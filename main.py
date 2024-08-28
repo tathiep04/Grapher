@@ -26,7 +26,7 @@ def main(args):
 
     if args.run == 'train':
 
-        dm = GraphDataModule(tokenizer_class=T5Tokenizer,
+        dm = GraphDataModule(tokenizer_class= T5Tokenizer.from_pretrained("google-t5/t5-small"), #T5Tokenizer,
                              tokenizer_name=args.pretrained_model,
                              cache_dir=args.cache_dir,
                              data_path=args.data_path,
@@ -49,7 +49,7 @@ def main(args):
             every_n_train_steps=args.checkpoint_step_frequency,
         )
 
-        grapher = LitGrapher(transformer_class=T5ForConditionalGeneration,
+        grapher = LitGrapher(transformer_class=T5ForConditionalGeneration.from_pretrained("google-t5/t5-small"),#T5ForConditionalGeneration,
                              transformer_name=args.pretrained_model,
                              tokenizer=dm.tokenizer,
                              cache_dir=args.cache_dir,
@@ -89,7 +89,7 @@ def main(args):
 
         grapher = LitGrapher.load_from_checkpoint(checkpoint_path=checkpoint_model_path)
 
-        dm = GraphDataModule(tokenizer_class=T5Tokenizer,
+        dm = GraphDataModule(tokenizer_class=T5Tokenizer.from_pretrained("google-t5/t5-small"), #T5Tokenizer,
                              tokenizer_name=grapher.transformer_name,
                              cache_dir=grapher.cache_dir,
                              data_path=args.data_path,
