@@ -6,7 +6,7 @@ python main.py    --version 2\
                   --max_epochs 100 \
                   --accelerator gpu \
                   --num_nodes 1 \
-                  --num_data_workers 4 \
+                  --num_data_workers 2 \
                   --lr 1e-4 \
                   --batch_size 11 \
                   --num_sanity_val_steps 0 \
